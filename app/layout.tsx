@@ -18,7 +18,7 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Jordy McIntyre | Audio Craft Specialist",
+  title: "Jordy McIntyre | Audio Engineering + AI Generation Systems + Content Operations",
   description: "Audio Engineering + AI Generation Systems + Content Operations. Portfolio showcasing multi-modal AI workflows, knowledge systems, and B2B SaaS content operations.",
   keywords: [
     "Audio Engineering",
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Jordy McIntyre" }],
   openGraph: {
-    title: "Jordy McIntyre | Audio Craft Specialist",
+    title: "Jordy McIntyre | Audio Engineering + AI Generation Systems + Content Operations",
     description: "Portfolio showcasing audio engineering, AI workflows, and content systems",
     siteName: "Jordy McIntyre Portfolio",
     locale: "en_AU",
