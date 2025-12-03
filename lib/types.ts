@@ -10,7 +10,7 @@ export interface SectionMeta {
   navLabel: string;
 }
 
-export type MediaType = 'spotify' | 'instagram' | 'youtube' | 'podcast' | 'iframe' | 'image' | 'linkedin' | 'discogs-skeleton';
+export type MediaType = 'spotify' | 'instagram' | 'youtube' | 'podcast' | 'iframe' | 'image' | 'linkedin' | 'discogs-skeleton' | 'audio' | 'video';
 
 export interface MediaItem {
   type: MediaType;
@@ -27,6 +27,11 @@ export interface MediaItem {
 export interface ProcessStep {
   label: string;
   description: string;
+}
+
+export interface PromptStage {
+  stage: string;
+  prompt: string;
 }
 
 export interface Project {
@@ -47,4 +52,6 @@ export interface Project {
     github?: string;
   };
   isHero?: boolean;
+  hasCustomLayout?: boolean;
+  prompts?: PromptStage[];
 }

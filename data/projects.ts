@@ -41,6 +41,25 @@ export const projects: Project[] = [
     description: 'Systematic multi-stage AI generation workflow: Midjourney prompting → face-swap → Runway video generation → ElevenLabs voice cloning → lip-sync. Demonstrates consistency control and prompt engineering across modalities.',
     tools: ['Midjourney', 'Runway', 'ElevenLabs'],
     skills: ['Prompt Engineering', 'Multi-Modal AI', 'Character Consistency'],
+    hasCustomLayout: true,
+    prompts: [
+      {
+        stage: 'Image Generation',
+        prompt: '1980s action movie female lead, strong athletic woman with long dark curly hair and bold blonde streaks, intense expression, wearing a retro leather jacket or tactical jumpsuit, standing in a gritty neon-lit alley or rooftop, dramatic pose with wind in her hair, synthwave lighting and deep shadows, urban backdrop with glowing signs and fog, cinematic freeze-frame, VHS film grain aesthetic, heroic and deadly'
+      },
+      {
+        stage: 'Face Swap',
+        prompt: 'face swap'
+      },
+      {
+        stage: 'Video Generation',
+        prompt: 'turns towards camera, speaks, camera slowly zooms with TTS lip sync\n\nText to lip-sync prompt: you son of a bush*\n\n*getting around runway\'s language violation'
+      },
+      {
+        stage: 'Voice Cloning',
+        prompt: 'Voice prompt: A confident, grounded woman in her 40s with a low, smooth voice and a calm, deliberate delivery. She rarely raises her voice, but when she speaks, there\'s weight behind every word. Her tone is steady, slightly gravelly, with subtle intensity — like someone who\'s seen too much but hasn\'t lost her edge. Emotionally restrained, cool under pressure, with a dry wit and a worn-in warmth beneath it all. Slight urban inflection, but mostly neutral American.\n\nSpeech prompt: You sonnuva bitch...[pause] I\'m inn'
+      }
+    ],
     media: [
       {
         type: 'youtube',

@@ -41,7 +41,9 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
   const hasLinkedIn = linkedInPosts.length > 0;
   const hasDiscogs = project.media.some(m => m.type === 'discogs-skeleton');
 
+
   return (
+    <>
     <div className={`grid grid-cols-1 md:grid-cols-2 gap-8 ${project.isHero ? 'border-2 rounded-lg p-6' : ''}`} style={project.isHero ? {
       borderColor: 'var(--color-accent-500)',
       backgroundColor: 'var(--color-accent-50)'
@@ -236,5 +238,93 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
         })}
       </div>
     </div>
+
+    {/* Custom 4-Column Grid Section for Multi-Modal AI Pipeline */}
+    {project.hasCustomLayout && project.prompts && (
+      <div className="mt-8 space-y-4">
+        {/* 4-Column Grid with Prompts */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          {/* Top Row - Prompts */}
+          {project.prompts.map((promptStage, idx) => (
+            <div
+              key={idx}
+              className="bg-gray-900 rounded-lg p-4 border border-gray-700"
+            >
+              <div className="text-xs font-semibold mb-2 text-emerald-400">
+                {promptStage.stage}
+              </div>
+              <textarea
+                readOnly
+                value={promptStage.prompt}
+                className="w-full bg-transparent text-gray-300 text-sm resize-none border-none focus:outline-none font-mono"
+                rows={6}
+                style={{ minHeight: '150px' }}
+              />
+            </div>
+          ))}
+        </div>
+
+        {/* Bottom Row - Media Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <MediaRenderer
+            media={{
+              type: 'image',
+              url: '/images/Reenie 1.png',
+              title: 'Reenie Character Image 1',
+              aspectRatio: '9/16'
+            }}
+            isLinkedInModalOpen={isLinkedInModalOpen}
+            onLinkedInModalClose={() => setIsLinkedInModalOpen(false)}
+            onLinkedInModalOpen={() => setIsLinkedInModalOpen(true)}
+            isDiscogsModalOpen={isDiscogsModalOpen}
+            onDiscogsModalClose={() => setIsDiscogsModalOpen(false)}
+            onDiscogsModalOpen={() => setIsDiscogsModalOpen(true)}
+          />
+          <MediaRenderer
+            media={{
+              type: 'image',
+              url: '/images/Reenie 2 .jpg',
+              title: 'Reenie Character Image 2',
+              aspectRatio: '9/16'
+            }}
+            isLinkedInModalOpen={isLinkedInModalOpen}
+            onLinkedInModalClose={() => setIsLinkedInModalOpen(false)}
+            onLinkedInModalOpen={() => setIsLinkedInModalOpen(true)}
+            isDiscogsModalOpen={isDiscogsModalOpen}
+            onDiscogsModalClose={() => setIsDiscogsModalOpen(false)}
+            onDiscogsModalOpen={() => setIsDiscogsModalOpen(true)}
+          />
+          <MediaRenderer
+            media={{
+              type: 'video',
+              url: '/images/reenie-runway-video.mp4',
+              title: 'Reenie Runway Video',
+              aspectRatio: '9/16'
+            }}
+            isLinkedInModalOpen={isLinkedInModalOpen}
+            onLinkedInModalClose={() => setIsLinkedInModalOpen(false)}
+            onLinkedInModalOpen={() => setIsLinkedInModalOpen(true)}
+            isDiscogsModalOpen={isDiscogsModalOpen}
+            onDiscogsModalClose={() => setIsDiscogsModalOpen(false)}
+            onDiscogsModalOpen={() => setIsDiscogsModalOpen(true)}
+          />
+          <MediaRenderer
+            media={{
+              type: 'audio',
+              url: '/images/reenie-audio.mp3',
+              title: 'Reenie Voice Audio',
+              aspectRatio: '9/16'
+            }}
+            isLinkedInModalOpen={isLinkedInModalOpen}
+            onLinkedInModalClose={() => setIsLinkedInModalOpen(false)}
+            onLinkedInModalOpen={() => setIsLinkedInModalOpen(true)}
+            isDiscogsModalOpen={isDiscogsModalOpen}
+            onDiscogsModalClose={() => setIsDiscogsModalOpen(false)}
+            onDiscogsModalOpen={() => setIsDiscogsModalOpen(true)}
+          />
+        </div>
+      </div>
+    )}
+    </>
   );
 };

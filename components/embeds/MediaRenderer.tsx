@@ -8,6 +8,8 @@ import { PodcastEmbed } from './PodcastEmbed';
 import { IframeEmbed } from './IframeEmbed';
 import { LinkedInEmbed } from './LinkedInEmbed';
 import { DiscogsAppSkeleton } from './DiscogsAppSkeleton';
+import { AudioEmbed } from './AudioEmbed';
+import { VideoEmbed } from './VideoEmbed';
 import Image from 'next/image';
 
 interface MediaRendererProps {
@@ -91,6 +93,24 @@ export const MediaRenderer = ({
             className="w-full h-auto"
           />
         </div>
+      );
+
+    case 'audio':
+      return (
+        <AudioEmbed
+          url={media.url}
+          title={media.title}
+          aspectRatio={media.aspectRatio}
+        />
+      );
+
+    case 'video':
+      return (
+        <VideoEmbed
+          url={media.url}
+          title={media.title}
+          aspectRatio={media.aspectRatio}
+        />
       );
 
     default:
