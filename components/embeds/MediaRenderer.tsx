@@ -7,6 +7,7 @@ import { YouTubeEmbed } from './YouTubeEmbed';
 import { PodcastEmbed } from './PodcastEmbed';
 import { IframeEmbed } from './IframeEmbed';
 import { LinkedInEmbed } from './LinkedInEmbed';
+import { LinkedInEventEmbed } from './LinkedInEventEmbed';
 import { DiscogsAppSkeleton } from './DiscogsAppSkeleton';
 import { AudioEmbed } from './AudioEmbed';
 import { VideoEmbed } from './VideoEmbed';
@@ -58,6 +59,9 @@ export const MediaRenderer = ({
 
     case 'linkedin':
       return <LinkedInEmbed url={media.url} title={media.title} />;
+
+    case 'linkedin-event':
+      return <LinkedInEventEmbed url={media.url} title={media.title} />;
 
     case 'discogs-skeleton':
       return (

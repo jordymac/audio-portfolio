@@ -31,6 +31,12 @@ export const sections: SectionMeta[] = [
     intro: 'Cross-functional content creation collaborating with Sales and Product teams to produce webinars, feature demonstrations, and how-to videos that addressed pipeline friction and supported enterprise sales conversations.',
     navLabel: 'Content Ops',
   },
+  {
+    id: 'how-tos-features',
+    title: 'How-tos & Feature Release Videos',
+    intro: 'Product demonstration and tutorial content showcasing platform features and workflows, enabling customer self-service and supporting sales enablement.',
+    navLabel: 'How-tos & Features',
+  },
 ];
 
 export const projects: Project[] = [
@@ -146,19 +152,9 @@ export const projects: Project[] = [
     skills: ['Live Streaming', 'Video Production', 'How-Tos', 'Sales Enablement'],
     media: [
       {
-        type: 'linkedin',
-        url: 'https://www.linkedin.com/embed/feed/update/urn:li:activity:7303175591694934018',
-        title: 'LinkedIn Post 1'
-      },
-      {
-        type: 'linkedin',
-        url: 'https://www.linkedin.com/embed/feed/update/urn:li:activity:7275690614438948864',
-        title: 'LinkedIn Post 2'
-      },
-      {
-        type: 'linkedin',
-        url: 'https://www.linkedin.com/embed/feed/update/urn:li:activity:7272435349392355328',
-        title: 'LinkedIn Post 3'
+        type: 'linkedin-event',
+        url: 'https://www.linkedin.com/events/7053947044096282625/',
+        title: 'Sales-Driven Webinar Event'
       },
     ],
   },
@@ -175,6 +171,31 @@ export const projects: Project[] = [
         type: 'podcast',
         url: 'https://podcasts.apple.com/us/podcast/ai-cant-tell-the-difference-between-a-punch/id1436557479?i=1000680633073',
         title: 'AI Can\'t Tell the Difference Between a Punch'
+      },
+    ],
+  },
+  {
+    id: 'product-how-tos',
+    title: 'Product Feature Demonstrations',
+    category: 'how-tos-features',
+    description: 'Tutorial and how-to video content demonstrating platform features and workflows, creating self-service resources for customers and prospects.',
+    tools: ['OBS', 'Premiere Pro', 'ScreenFlow'],
+    skills: ['Screen Recording', 'Tutorial Production', 'Product Documentation', 'Video Editing'],
+    media: [
+      {
+        type: 'linkedin',
+        url: 'https://www.linkedin.com/embed/feed/update/urn:li:activity:7303175591694934018',
+        title: 'LinkedIn Post 1'
+      },
+      {
+        type: 'linkedin',
+        url: 'https://www.linkedin.com/embed/feed/update/urn:li:activity:7275690614438948864',
+        title: 'LinkedIn Post 2'
+      },
+      {
+        type: 'linkedin',
+        url: 'https://www.linkedin.com/embed/feed/update/urn:li:activity:7272435349392355328',
+        title: 'LinkedIn Post 3'
       },
     ],
   },

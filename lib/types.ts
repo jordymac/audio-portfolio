@@ -10,7 +10,7 @@ export interface SectionMeta {
   navLabel: string;
 }
 
-export type MediaType = 'spotify' | 'instagram' | 'youtube' | 'podcast' | 'iframe' | 'image' | 'linkedin' | 'discogs-skeleton' | 'audio' | 'video';
+export type MediaType = 'spotify' | 'instagram' | 'youtube' | 'podcast' | 'iframe' | 'image' | 'linkedin' | 'linkedin-event' | 'discogs-skeleton' | 'audio' | 'video';
 
 export interface MediaItem {
   type: MediaType;
