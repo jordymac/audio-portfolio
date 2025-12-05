@@ -2,8 +2,8 @@ import { Project, SectionMeta, HeroStats } from '@/lib/types';
 
 export const heroStats: HeroStats[] = [
   { label: 'Audio Engineering', value: 'Diploma Qualified' },
-  { label: 'AI Generation', value: 'Multi-Modal' },
-  { label: 'B2B SaaS', value: 'Content Operations' },
+  { label: 'AI Generation Systems', value: 'Multi-Modal' },
+  { label: 'Content Operations', value: 'B2B SaaS' },
 ];
 
 export const sections: SectionMeta[] = [

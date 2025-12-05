@@ -1,6 +1,9 @@
 'use client';
 
+import React from 'react';
 import { Container } from '@/components/ui/Container';
+import { SparklesText } from '@/components/ui/sparkles-text';
+import { ParticleButton } from '@/components/ui/particle-button';
 import { heroStats } from '@/data/projects';
 
 export const Hero = () => {
@@ -8,28 +11,44 @@ export const Hero = () => {
     <section id="hero" className="min-h-screen flex items-center" style={{ backgroundColor: 'var(--color-background)' }}>
       <Container>
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6" style={{
-            fontFamily: 'var(--font-display)',
-            color: 'var(--color-text-primary)'
-          }}>
-            Jordy McIntyre
-          </h1>
-          <p className="text-2xl md:text-3xl mb-12" style={{ color: 'var(--color-text-secondary)' }}>
-            Audio Engineering + AI Generation Systems + Content Operations
-          </p>
+          <SparklesText
+            text="Jordy McIntyre"
+            className="text-5xl md:text-6xl lg:text-7xl font-bold mb-16"
+            colors={{ first: "#9E7AFF", second: "#FE8BBB" }}
+            sparklesCount={15}
+          />
 
           {/* Stats Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6 mt-16">
-            {heroStats.map((stat) => (
-              <div key={stat.label} className="text-center">
-                <div className="text-xl md:text-2xl font-bold mb-2" style={{ color: 'var(--color-accent-500)' }}>
-                  {stat.label}
+          <div className="flex items-center justify-center gap-8 mt-16">
+            {heroStats.map((stat, index) => (
+              <React.Fragment key={stat.label}>
+                <div className="text-center">
+                  <div className="text-xl md:text-2xl font-bold mb-2" style={{ color: 'var(--color-text-primary)' }}>
+                    {stat.label}
+                  </div>
+                  <div className="text-base" style={{ color: 'var(--color-text-secondary)' }}>
+                    {stat.value}
+                  </div>
                 </div>
-                <div className="text-sm" style={{ color: 'var(--color-text-secondary)' }}>
-                  {stat.value}
-                </div>
-              </div>
+                {index < heroStats.length - 1 && (
+                  <div className="h-16 w-px" style={{ backgroundColor: 'var(--color-text-secondary)', opacity: 0.3 }} />
+                )}
+              </React.Fragment>
             ))}
+          </div>
+
+          {/* CTA Button */}
+          <div className="mt-12">
+            <ParticleButton
+              successDuration={1000}
+              variant="default"
+              size="lg"
+              onClick={() => {
+                document.getElementById('ai-generation')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
+              Take me to the portfolio
+            </ParticleButton>
           </div>
         </div>
       </Container>
