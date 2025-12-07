@@ -9,6 +9,7 @@ import { IframeEmbed } from './IframeEmbed';
 import { LinkedInEmbed } from './LinkedInEmbed';
 import { LinkedInEventEmbed } from './LinkedInEventEmbed';
 import { DiscogsAppSkeleton } from './DiscogsAppSkeleton';
+import { AIAudioGenSkeleton } from './AIAudioGenSkeleton';
 import { AudioEmbed } from './AudioEmbed';
 import { VideoEmbed } from './VideoEmbed';
 import Image from 'next/image';
@@ -21,6 +22,9 @@ interface MediaRendererProps {
   isDiscogsModalOpen?: boolean;
   onDiscogsModalClose?: () => void;
   onDiscogsModalOpen?: () => void;
+  isAIAudioGenModalOpen?: boolean;
+  onAIAudioGenModalClose?: () => void;
+  onAIAudioGenModalOpen?: () => void;
 }
 
 export const MediaRenderer = ({
@@ -30,7 +34,10 @@ export const MediaRenderer = ({
   onLinkedInModalOpen,
   isDiscogsModalOpen,
   onDiscogsModalClose,
-  onDiscogsModalOpen
+  onDiscogsModalOpen,
+  isAIAudioGenModalOpen,
+  onAIAudioGenModalClose,
+  onAIAudioGenModalOpen
 }: MediaRendererProps) => {
   switch (media.type) {
     case 'spotify':
@@ -70,6 +77,17 @@ export const MediaRenderer = ({
             isModalOpen={isDiscogsModalOpen}
             onModalClose={onDiscogsModalClose}
             onModalOpen={onDiscogsModalOpen}
+          />
+        </div>
+      );
+
+    case 'ai-audio-gen-skeleton':
+      return (
+        <div className="w-full rounded-lg overflow-hidden">
+          <AIAudioGenSkeleton
+            isModalOpen={isAIAudioGenModalOpen}
+            onModalClose={onAIAudioGenModalClose}
+            onModalOpen={onAIAudioGenModalOpen}
           />
         </div>
       );

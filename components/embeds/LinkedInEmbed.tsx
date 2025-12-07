@@ -105,7 +105,7 @@ export const LinkedInEmbed = ({
         )}
 
         {/* Overlay with CTA Button */}
-        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+        <div className="absolute inset-0 bg-black/40 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity flex items-center justify-center">
           <button
             className="px-6 py-3 rounded-lg font-semibold transition-transform transform group-hover:scale-105"
             style={{

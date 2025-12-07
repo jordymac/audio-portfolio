@@ -13,6 +13,7 @@ interface ProjectCardProps {
 export const ProjectCard = ({ project }: ProjectCardProps) => {
   const [isLinkedInModalOpen, setIsLinkedInModalOpen] = React.useState(false);
   const [isDiscogsModalOpen, setIsDiscogsModalOpen] = React.useState(false);
+  const [isAIAudioGenModalOpen, setIsAIAudioGenModalOpen] = React.useState(false);
 
   // Group consecutive LinkedIn posts together
   const groupedMedia: (typeof project.media[0] | { type: 'linkedin-group'; posts: typeof project.media })[] = [];
@@ -40,6 +41,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
   // Check if project has modal-capable media
   const hasLinkedIn = linkedInPosts.length > 0;
   const hasDiscogs = project.media.some(m => m.type === 'discogs-skeleton');
+  const hasAIAudioGen = project.media.some(m => m.type === 'ai-audio-gen-skeleton');
 
 
   return (
@@ -103,6 +105,13 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
           </p>
         )}
 
+        {/* Technical Notes / Key Points */}
+        {project.technicalNotes && (
+          <div className="mt-4 text-sm leading-relaxed whitespace-pre-line" style={{ color: 'var(--color-text-secondary)' }}>
+            {project.technicalNotes}
+          </div>
+        )}
+
         {/* Modal Buttons */}
         {hasLinkedIn && (
           <button
@@ -126,6 +135,18 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
             }}
           >
             Explore Live App
+          </button>
+        )}
+        {hasAIAudioGen && (
+          <button
+            onClick={() => setIsAIAudioGenModalOpen(true)}
+            className="mt-4 px-6 py-3 rounded-lg font-semibold transition-transform hover:scale-105"
+            style={{
+              backgroundColor: '#22c55e',
+              color: 'white'
+            }}
+          >
+            Explore System
           </button>
         )}
       </div>
@@ -178,6 +199,9 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                       isDiscogsModalOpen={isDiscogsModalOpen}
                       onDiscogsModalClose={() => setIsDiscogsModalOpen(false)}
                       onDiscogsModalOpen={() => setIsDiscogsModalOpen(true)}
+                      isAIAudioGenModalOpen={isAIAudioGenModalOpen}
+                      onAIAudioGenModalClose={() => setIsAIAudioGenModalOpen(false)}
+                      onAIAudioGenModalOpen={() => setIsAIAudioGenModalOpen(true)}
                     />
                   ))}
                 </div>
@@ -216,6 +240,9 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                       isDiscogsModalOpen={isDiscogsModalOpen}
                       onDiscogsModalClose={() => setIsDiscogsModalOpen(false)}
                       onDiscogsModalOpen={() => setIsDiscogsModalOpen(true)}
+                      isAIAudioGenModalOpen={isAIAudioGenModalOpen}
+                      onAIAudioGenModalClose={() => setIsAIAudioGenModalOpen(false)}
+                      onAIAudioGenModalOpen={() => setIsAIAudioGenModalOpen(true)}
                     />
                   ))}
                 </div>
@@ -233,6 +260,9 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
               isDiscogsModalOpen={isDiscogsModalOpen}
               onDiscogsModalClose={() => setIsDiscogsModalOpen(false)}
               onDiscogsModalOpen={() => setIsDiscogsModalOpen(true)}
+              isAIAudioGenModalOpen={isAIAudioGenModalOpen}
+              onAIAudioGenModalClose={() => setIsAIAudioGenModalOpen(false)}
+              onAIAudioGenModalOpen={() => setIsAIAudioGenModalOpen(true)}
             />
           );
         })}
@@ -241,31 +271,115 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
 
     {/* Custom 4-Column Grid Section for Multi-Modal AI Pipeline */}
     {project.hasCustomLayout && project.prompts && (
-      <div className="mt-8 space-y-4">
-        {/* 4-Column Grid with Prompts */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="mt-8">
+        {/* Desktop: Show prompts in top row, media in bottom row */}
+        <div className="hidden md:block space-y-4">
           {/* Top Row - Prompts */}
-          {project.prompts.map((promptStage, idx) => (
-            <div
-              key={idx}
-              className="bg-gray-900 rounded-lg p-4 border border-gray-700"
-            >
-              <div className="text-xs font-semibold mb-2 text-emerald-400">
-                {promptStage.stage}
+          <div className="grid grid-cols-4 gap-4">
+            {project.prompts.map((promptStage, idx) => (
+              <div
+                key={idx}
+                className="bg-gray-900 rounded-lg p-4 border border-gray-700"
+              >
+                <div className="text-xs font-semibold mb-2 text-emerald-400">
+                  {promptStage.stage}
+                </div>
+                <textarea
+                  readOnly
+                  value={promptStage.prompt}
+                  className="w-full bg-transparent text-gray-300 text-sm resize-none border-none focus:outline-none font-mono"
+                  rows={6}
+                  style={{ minHeight: '150px' }}
+                />
               </div>
-              <textarea
-                readOnly
-                value={promptStage.prompt}
-                className="w-full bg-transparent text-gray-300 text-sm resize-none border-none focus:outline-none font-mono"
-                rows={6}
-                style={{ minHeight: '150px' }}
-              />
-            </div>
-          ))}
+            ))}
+          </div>
+
+          {/* Bottom Row - Media Grid */}
+          <div className="grid grid-cols-4 gap-4">
+            <MediaRenderer
+              media={{
+                type: 'image',
+                url: '/images/Reenie 1.png',
+                title: 'Reenie Character Image 1',
+                aspectRatio: '9/16'
+              }}
+              isLinkedInModalOpen={isLinkedInModalOpen}
+              onLinkedInModalClose={() => setIsLinkedInModalOpen(false)}
+              onLinkedInModalOpen={() => setIsLinkedInModalOpen(true)}
+              isDiscogsModalOpen={isDiscogsModalOpen}
+              onDiscogsModalClose={() => setIsDiscogsModalOpen(false)}
+              onDiscogsModalOpen={() => setIsDiscogsModalOpen(true)}
+              isAIAudioGenModalOpen={isAIAudioGenModalOpen}
+              onAIAudioGenModalClose={() => setIsAIAudioGenModalOpen(false)}
+              onAIAudioGenModalOpen={() => setIsAIAudioGenModalOpen(true)}
+            />
+            <MediaRenderer
+              media={{
+                type: 'image',
+                url: '/images/Reenie 2 .jpg',
+                title: 'Reenie Character Image 2',
+                aspectRatio: '9/16'
+              }}
+              isLinkedInModalOpen={isLinkedInModalOpen}
+              onLinkedInModalClose={() => setIsLinkedInModalOpen(false)}
+              onLinkedInModalOpen={() => setIsLinkedInModalOpen(true)}
+              isDiscogsModalOpen={isDiscogsModalOpen}
+              onDiscogsModalClose={() => setIsDiscogsModalOpen(false)}
+              onDiscogsModalOpen={() => setIsDiscogsModalOpen(true)}
+              isAIAudioGenModalOpen={isAIAudioGenModalOpen}
+              onAIAudioGenModalClose={() => setIsAIAudioGenModalOpen(false)}
+              onAIAudioGenModalOpen={() => setIsAIAudioGenModalOpen(true)}
+            />
+            <MediaRenderer
+              media={{
+                type: 'video',
+                url: '/images/reenie-runway-video.mp4',
+                title: 'Reenie Runway Video',
+                aspectRatio: '9/16'
+              }}
+              isLinkedInModalOpen={isLinkedInModalOpen}
+              onLinkedInModalClose={() => setIsLinkedInModalOpen(false)}
+              onLinkedInModalOpen={() => setIsLinkedInModalOpen(true)}
+              isDiscogsModalOpen={isDiscogsModalOpen}
+              onDiscogsModalClose={() => setIsDiscogsModalOpen(false)}
+              onDiscogsModalOpen={() => setIsDiscogsModalOpen(true)}
+              isAIAudioGenModalOpen={isAIAudioGenModalOpen}
+              onAIAudioGenModalClose={() => setIsAIAudioGenModalOpen(false)}
+              onAIAudioGenModalOpen={() => setIsAIAudioGenModalOpen(true)}
+            />
+            <MediaRenderer
+              media={{
+                type: 'audio',
+                url: '/images/reenie-audio.mp3',
+                title: 'Reenie Voice Audio',
+                aspectRatio: '9/16'
+              }}
+              isLinkedInModalOpen={isLinkedInModalOpen}
+              onLinkedInModalClose={() => setIsLinkedInModalOpen(false)}
+              onLinkedInModalOpen={() => setIsLinkedInModalOpen(true)}
+              isDiscogsModalOpen={isDiscogsModalOpen}
+              onDiscogsModalClose={() => setIsDiscogsModalOpen(false)}
+              onDiscogsModalOpen={() => setIsDiscogsModalOpen(true)}
+            />
+          </div>
         </div>
 
-        {/* Bottom Row - Media Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        {/* Mobile: Alternate prompt-media pairs */}
+        <div className="md:hidden space-y-4">
+          {/* Image Generation */}
+          <div className="bg-gray-900 rounded-lg p-4 border border-gray-700">
+            <div className="text-xs font-semibold mb-2 text-emerald-400">
+              {project.prompts[0].stage}
+            </div>
+            <textarea
+              readOnly
+              value={project.prompts[0].prompt}
+              className="w-full bg-transparent text-gray-300 text-sm resize-none border-none focus:outline-none font-mono"
+              rows={6}
+              style={{ minHeight: '150px' }}
+            />
+          </div>
           <MediaRenderer
             media={{
               type: 'image',
@@ -279,7 +393,24 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
             isDiscogsModalOpen={isDiscogsModalOpen}
             onDiscogsModalClose={() => setIsDiscogsModalOpen(false)}
             onDiscogsModalOpen={() => setIsDiscogsModalOpen(true)}
+            isAIAudioGenModalOpen={isAIAudioGenModalOpen}
+            onAIAudioGenModalClose={() => setIsAIAudioGenModalOpen(false)}
+            onAIAudioGenModalOpen={() => setIsAIAudioGenModalOpen(true)}
           />
+
+          {/* Face Swap */}
+          <div className="bg-gray-900 rounded-lg p-4 border border-gray-700">
+            <div className="text-xs font-semibold mb-2 text-emerald-400">
+              {project.prompts[1].stage}
+            </div>
+            <textarea
+              readOnly
+              value={project.prompts[1].prompt}
+              className="w-full bg-transparent text-gray-300 text-sm resize-none border-none focus:outline-none font-mono"
+              rows={6}
+              style={{ minHeight: '150px' }}
+            />
+          </div>
           <MediaRenderer
             media={{
               type: 'image',
@@ -293,7 +424,24 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
             isDiscogsModalOpen={isDiscogsModalOpen}
             onDiscogsModalClose={() => setIsDiscogsModalOpen(false)}
             onDiscogsModalOpen={() => setIsDiscogsModalOpen(true)}
+            isAIAudioGenModalOpen={isAIAudioGenModalOpen}
+            onAIAudioGenModalClose={() => setIsAIAudioGenModalOpen(false)}
+            onAIAudioGenModalOpen={() => setIsAIAudioGenModalOpen(true)}
           />
+
+          {/* Video Generation */}
+          <div className="bg-gray-900 rounded-lg p-4 border border-gray-700">
+            <div className="text-xs font-semibold mb-2 text-emerald-400">
+              {project.prompts[2].stage}
+            </div>
+            <textarea
+              readOnly
+              value={project.prompts[2].prompt}
+              className="w-full bg-transparent text-gray-300 text-sm resize-none border-none focus:outline-none font-mono"
+              rows={6}
+              style={{ minHeight: '150px' }}
+            />
+          </div>
           <MediaRenderer
             media={{
               type: 'video',
@@ -307,7 +455,24 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
             isDiscogsModalOpen={isDiscogsModalOpen}
             onDiscogsModalClose={() => setIsDiscogsModalOpen(false)}
             onDiscogsModalOpen={() => setIsDiscogsModalOpen(true)}
+            isAIAudioGenModalOpen={isAIAudioGenModalOpen}
+            onAIAudioGenModalClose={() => setIsAIAudioGenModalOpen(false)}
+            onAIAudioGenModalOpen={() => setIsAIAudioGenModalOpen(true)}
           />
+
+          {/* Voice Cloning */}
+          <div className="bg-gray-900 rounded-lg p-4 border border-gray-700">
+            <div className="text-xs font-semibold mb-2 text-emerald-400">
+              {project.prompts[3].stage}
+            </div>
+            <textarea
+              readOnly
+              value={project.prompts[3].prompt}
+              className="w-full bg-transparent text-gray-300 text-sm resize-none border-none focus:outline-none font-mono"
+              rows={6}
+              style={{ minHeight: '150px' }}
+            />
+          </div>
           <MediaRenderer
             media={{
               type: 'audio',
@@ -321,6 +486,9 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
             isDiscogsModalOpen={isDiscogsModalOpen}
             onDiscogsModalClose={() => setIsDiscogsModalOpen(false)}
             onDiscogsModalOpen={() => setIsDiscogsModalOpen(true)}
+            isAIAudioGenModalOpen={isAIAudioGenModalOpen}
+            onAIAudioGenModalClose={() => setIsAIAudioGenModalOpen(false)}
+            onAIAudioGenModalOpen={() => setIsAIAudioGenModalOpen(true)}
           />
         </div>
       </div>

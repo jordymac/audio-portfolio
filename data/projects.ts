@@ -41,6 +41,22 @@ export const sections: SectionMeta[] = [
 
 export const projects: Project[] = [
   {
+    id: 'ai-audio-generation-system',
+    title: 'AI Audio Generation System with Intelligent Knowledge Base',
+    category: 'ai-generation',
+    description: 'Connects music theory, production techniques, and semantic relationships to generate better prompts that improve over time.',
+    technicalNotes: '🧠 Knowledge Base - Music theory + production techniques + semantic relationships power intelligent prompt generation (future-proof as AI tools get more sophisticated)\n\n🔄 Systematic Workflow - Brief → auto-prompt → generate → review → feedback loop → knowledge base update\n\n📊 Continuous Improvement - Metrics drive prompt refinement and knowledge base expansion',
+    tools: ['Next.js', 'TypeScript', 'AI Prompting'],
+    skills: ['Knowledge Base Design', 'Systematic Workflow', 'Prompt Engineering', 'Audio Generation'],
+    media: [
+      {
+        type: 'ai-audio-gen-skeleton',
+        url: '',
+        title: 'AI Audio Generation System'
+      },
+    ],
+  },
+  {
     id: 'multi-modal-ai',
     title: 'Multi-Modal AI Content Pipeline',
     category: 'ai-generation',

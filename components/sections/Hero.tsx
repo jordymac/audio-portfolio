@@ -13,25 +13,25 @@ export const Hero = () => {
         <div className="max-w-4xl mx-auto text-center">
           <SparklesText
             text="Jordy McIntyre"
-            className="text-5xl md:text-6xl lg:text-7xl font-bold mb-16"
+            className="text-4xl md:text-6xl lg:text-7xl font-bold mb-8 md:mb-16"
             colors={{ first: "#9E7AFF", second: "#FE8BBB" }}
             sparklesCount={15}
           />
 
           {/* Stats Grid */}
-          <div className="flex items-center justify-center gap-8 mt-16">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8 mt-16">
             {heroStats.map((stat, index) => (
               <React.Fragment key={stat.label}>
                 <div className="text-center">
-                  <div className="text-xl md:text-2xl font-bold mb-2" style={{ color: 'var(--color-text-primary)' }}>
+                  <div className="text-lg md:text-xl lg:text-2xl font-bold mb-2" style={{ color: 'var(--color-text-primary)' }}>
                     {stat.label}
                   </div>
-                  <div className="text-base" style={{ color: 'var(--color-text-secondary)' }}>
+                  <div className="text-sm md:text-base" style={{ color: 'var(--color-text-secondary)' }}>
                     {stat.value}
                   </div>
                 </div>
                 {index < heroStats.length - 1 && (
-                  <div className="h-16 w-px" style={{ backgroundColor: 'var(--color-text-secondary)', opacity: 0.3 }} />
+                  <div className="w-16 h-px md:w-px md:h-16" style={{ backgroundColor: 'var(--color-text-secondary)', opacity: 0.3 }} />
                 )}
               </React.Fragment>
             ))}
@@ -44,7 +44,17 @@ export const Hero = () => {
               variant="default"
               size="lg"
               onClick={() => {
-                document.getElementById('ai-generation')?.scrollIntoView({ behavior: 'smooth' });
+                const element = document.getElementById('ai-generation');
+                if (element) {
+                  const headerOffset = 80;
+                  const elementPosition = element.getBoundingClientRect().top;
+                  const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                  window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                  });
+                }
               }}
             >
               Take me to the portfolio

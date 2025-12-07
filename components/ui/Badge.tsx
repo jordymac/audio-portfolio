@@ -19,7 +19,7 @@ export const Badge = ({ children, type = 'skill' }: BadgeProps) => {
 
   return (
     <span
-      className="inline-flex items-center px-3 py-1.5 text-xs font-semibold rounded-full"
+      className="inline-flex items-center px-2.5 py-1 text-xs font-medium rounded-full"
       style={{
         backgroundColor: `${color}1a`, // 10% opacity
         color: color,
