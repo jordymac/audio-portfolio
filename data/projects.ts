@@ -46,7 +46,7 @@ export const projects: Project[] = [
     category: 'ai-generation',
     description: 'Prompt:\n\na neo-soul\nvocal: powerful british female vocal\nkeys: organic synthy keys that pitch bend when played\nbass: electronic moog synth bassline played in a neo-soul groove\ndrums: rhythmic drums with lazy swing\npads: ethereal pads with width and reverb, low in the mix\nguitar: chill, electronic muted guitar\n\nReview: Noticed a weird vocal artefact at 21 seconds, changed to alternative section variant',
     tools: ['ElevenLabs'],
-    skills: ['Music Production', 'Prompting', 'Audio Engineer'],
+    skills: ['Music Production', 'Prompting', 'Audio Engineer', 'QC'],
     media: [
       {
         type: 'audio',
