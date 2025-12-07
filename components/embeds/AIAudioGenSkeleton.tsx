@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Modal } from '@/components/ui/Modal';
 
 interface AIAudioGenSkeletonProps {
@@ -15,11 +15,17 @@ export function AIAudioGenSkeleton({
   onModalOpen
 }: AIAudioGenSkeletonProps = {}) {
   const [internalIsModalOpen, setInternalIsModalOpen] = useState(false);
+  const [waveformHeights, setWaveformHeights] = useState<number[]>([]);
 
   const isModalOpen = externalIsModalOpen !== undefined ? externalIsModalOpen : internalIsModalOpen;
   const setIsModalOpen = onModalClose && onModalOpen
     ? (open: boolean) => open ? onModalOpen() : onModalClose()
     : setInternalIsModalOpen;
+
+  useEffect(() => {
+    // Generate random heights only on client side to avoid hydration mismatch
+    setWaveformHeights(Array.from({ length: 40 }, () => Math.random() * 100));
+  }, []);
 
   return (
     <>
@@ -31,12 +37,12 @@ export function AIAudioGenSkeleton({
           <div className="w-full max-w-md space-y-6">
             {/* Waveform visualization */}
             <div className="flex items-end justify-center gap-1 h-32">
-              {[...Array(40)].map((_, i) => (
+              {waveformHeights.map((height, i) => (
                 <div
                   key={i}
                   className="flex-1 bg-purple-400 rounded-full"
                   style={{
-                    height: `${Math.random() * 100}%`,
+                    height: `${height}%`,
                     opacity: 0.6
                   }}
                 ></div>
@@ -87,7 +93,7 @@ export function AIAudioGenSkeleton({
               setIsModalOpen(true);
             }}
           >
-            Create Your First Song
+            View the Prototype
           </button>
         </div>
       </div>

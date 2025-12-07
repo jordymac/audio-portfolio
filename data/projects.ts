@@ -10,7 +10,7 @@ export const sections: SectionMeta[] = [
   {
     id: 'ai-generation',
     title: 'AI Generation & Prompt Engineering',
-    intro: 'Multi-modal AI content pipeline demonstrating systematic prompt engineering across image (Midjourney), video (Runway), and voice (ElevenLabs) generation with character consistency control.',
+    intro: 'Demonstrates audio generation at pace: brand brief → prompt → evaluate → ship → improve. Three examples below show the workflow with real music/brand scenarios.',
     navLabel: 'AI Generation',
   },
   {
@@ -41,13 +41,35 @@ export const sections: SectionMeta[] = [
 
 export const projects: Project[] = [
   {
-    id: 'ai-audio-generation-system',
-    title: 'AI Audio Generation System with Intelligent Knowledge Base',
+    id: 'ai-music-prompting',
+    title: 'AI Music Prompting & Quality Checks',
     category: 'ai-generation',
-    description: 'Connects music theory, production techniques, and semantic relationships to generate better prompts that improve over time.',
-    technicalNotes: '🧠 Knowledge Base - Music theory + production techniques + semantic relationships power intelligent prompt generation (future-proof as AI tools get more sophisticated)\n\n🔄 Systematic Workflow - Brief → auto-prompt → generate → review → feedback loop → knowledge base update\n\n📊 Continuous Improvement - Metrics drive prompt refinement and knowledge base expansion',
-    tools: ['Next.js', 'TypeScript', 'AI Prompting'],
-    skills: ['Knowledge Base Design', 'Systematic Workflow', 'Prompt Engineering', 'Audio Generation'],
+    description: 'Prompt:\n\na neo-soul\nvocal: powerful british female vocal\nkeys: organic synthy keys that pitch bend when played\nbass: electronic moog synth bassline played in a neo-soul groove\ndrums: rhythmic drums with lazy swing\npads: ethereal pads with width and reverb, low in the mix\nguitar: chill, electronic muted guitar\n\nReview: Noticed a weird vocal artefact at 21 seconds, changed to alternative section variant',
+    tools: ['ElevenLabs'],
+    skills: ['Music Production', 'Prompting', 'Audio Engineer'],
+    media: [
+      {
+        type: 'audio',
+        url: '/audio/Audio-Embed-1.mp3',
+        title: 'Vocal Artefact at 21 seconds',
+        aspectRatio: '24/4'
+      },
+      {
+        type: 'audio',
+        url: '/audio/Audio-Embed-2.mp3',
+        title: 'Regenerated section',
+        aspectRatio: '24/4'
+      },
+    ],
+  },
+  {
+    id: 'ai-audio-generation-system',
+    title: 'AI Audio Workflow Prototype',
+    category: 'ai-generation',
+    description: 'Built to understand how audio generation works at scale - from brief to shipped asset with systematic improvement.\n\nCore loop: Brief → Prompt → Generate → Review → Ship → Learn\n\nShows working knowledge of:',
+    technicalNotes: 'Pace: Structured briefs and prompt libraries accelerate generation\n\nScale: Metadata and tagging make assets searchable and reusable\n\nImprovement: Feedback loops capture what works for next time',
+    tools: ['Claude Code'],
+    skills: ['Pace', 'Scale', 'Iteration'],
     media: [
       {
         type: 'ai-audio-gen-skeleton',
