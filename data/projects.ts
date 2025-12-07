@@ -69,7 +69,7 @@ export const projects: Project[] = [
     description: 'Built to understand how audio generation works at scale - from brief to shipped asset with systematic improvement.\n\nCore loop: Brief → Prompt → Generate → Review → Ship → Learn\n\nShows working knowledge of:',
     technicalNotes: 'Pace: Structured briefs and prompt libraries accelerate generation\n\nScale: Metadata and tagging make assets searchable and reusable\n\nImprovement: Feedback loops capture what works for next time',
     tools: ['Claude Code'],
-    skills: ['Pace', 'Scale', 'Iteration'],
+    skills: ['Taxonomy', 'Pace', 'Scale', 'Iteration'],
     media: [
       {
         type: 'ai-audio-gen-skeleton',
