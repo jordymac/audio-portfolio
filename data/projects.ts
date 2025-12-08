@@ -144,6 +144,12 @@ export const projects: Project[] = [
         url: 'spotify:track:1xa1RwCgY9IyvO785f561N',
         title: 'Track 2'
       },
+      {
+        type: 'iframe',
+        url: 'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%253Aplaylists%253A1410341371&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true',
+        title: 'SoundCloud Playlist',
+        aspectRatio: '100/30'
+      },
     ],
   },
   {

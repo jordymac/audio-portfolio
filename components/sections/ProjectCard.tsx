@@ -15,12 +15,12 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
   const [isDiscogsModalOpen, setIsDiscogsModalOpen] = React.useState(false);
   const [isAIAudioGenModalOpen, setIsAIAudioGenModalOpen] = React.useState(false);
 
-  // Group consecutive LinkedIn posts together
+  // Group consecutive LinkedIn posts together and exclude iframe items (they render full-width below)
   const groupedMedia: (typeof project.media[0] | { type: 'linkedin-group'; posts: typeof project.media })[] = [];
   let linkedInBuffer: typeof project.media = [];
   let linkedInPosts: typeof project.media = [];
 
-  project.media.forEach((media, idx) => {
+  project.media.filter(m => m.type !== 'iframe').forEach((media, idx) => {
     if (media.type === 'linkedin') {
       linkedInBuffer.push(media);
       linkedInPosts.push(media);
@@ -100,7 +100,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
 
         {/* Description */}
         {project.description && (
-          <p className="text-sm leading-relaxed mt-4" style={{ color: 'var(--color-text-secondary)' }}>
+          <p className="text-sm leading-relaxed mt-4 whitespace-pre-line" style={{ color: 'var(--color-text-secondary)' }}>
             {project.description}
           </p>
         )}
@@ -269,6 +269,29 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
       </div>
     </div>
 
+    {/* Full-width iframe embeds */}
+    {project.media.some(m => m.type === 'iframe') && (
+      <div className="mt-8">
+        {project.media
+          .filter(m => m.type === 'iframe')
+          .map((media, idx) => (
+            <MediaRenderer
+              key={`iframe-${idx}`}
+              media={media}
+              isLinkedInModalOpen={isLinkedInModalOpen}
+              onLinkedInModalClose={() => setIsLinkedInModalOpen(false)}
+              onLinkedInModalOpen={() => setIsLinkedInModalOpen(true)}
+              isDiscogsModalOpen={isDiscogsModalOpen}
+              onDiscogsModalClose={() => setIsDiscogsModalOpen(false)}
+              onDiscogsModalOpen={() => setIsDiscogsModalOpen(true)}
+              isAIAudioGenModalOpen={isAIAudioGenModalOpen}
+              onAIAudioGenModalClose={() => setIsAIAudioGenModalOpen(false)}
+              onAIAudioGenModalOpen={() => setIsAIAudioGenModalOpen(true)}
+            />
+          ))}
+      </div>
+    )}
+
     {/* Custom 4-Column Grid Section for Multi-Modal AI Pipeline */}
     {project.hasCustomLayout && project.prompts && (
       <div className="mt-8">
@@ -352,7 +375,6 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
               media={{
                 type: 'audio',
                 url: '/images/reenie-audio.mp3',
-                title: 'Reenie Voice Audio',
                 aspectRatio: '9/16'
               }}
               isLinkedInModalOpen={isLinkedInModalOpen}
@@ -361,6 +383,9 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
               isDiscogsModalOpen={isDiscogsModalOpen}
               onDiscogsModalClose={() => setIsDiscogsModalOpen(false)}
               onDiscogsModalOpen={() => setIsDiscogsModalOpen(true)}
+              isAIAudioGenModalOpen={isAIAudioGenModalOpen}
+              onAIAudioGenModalClose={() => setIsAIAudioGenModalOpen(false)}
+              onAIAudioGenModalOpen={() => setIsAIAudioGenModalOpen(true)}
             />
           </div>
         </div>
@@ -477,7 +502,6 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
             media={{
               type: 'audio',
               url: '/images/reenie-audio.mp3',
-              title: 'Reenie Voice Audio',
               aspectRatio: '9/16'
             }}
             isLinkedInModalOpen={isLinkedInModalOpen}
