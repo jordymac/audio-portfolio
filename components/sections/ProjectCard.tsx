@@ -5,6 +5,7 @@ import { Project } from '@/lib/types';
 import { Badge } from '@/components/ui/Badge';
 import { CalloutBox } from '@/components/ui/CalloutBox';
 import { MediaRenderer } from '@/components/embeds/MediaRenderer';
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';
 
 interface ProjectCardProps {
   project: Project;
@@ -98,8 +99,26 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
           )}
         </div>
 
+        {/* Accordion Sections */}
+        {project.accordionSections && project.accordionSections.length > 0 && (
+          <div className="mt-6">
+            <Accordion type="single" collapsible>
+              {project.accordionSections.map((section) => (
+                <AccordionItem key={section.id} value={section.id}>
+                  <AccordionTrigger>{section.title}</AccordionTrigger>
+                  <AccordionContent>
+                    <div className="text-sm leading-relaxed whitespace-pre-line" style={{ color: 'var(--color-text-secondary)' }}>
+                      {section.content}
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
+        )}
+
         {/* Description */}
-        {project.description && (
+        {project.description && !project.accordionSections && (
           <p className="text-sm leading-relaxed mt-4 whitespace-pre-line" style={{ color: 'var(--color-text-secondary)' }}>
             {project.description}
           </p>
@@ -153,6 +172,25 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
 
       {/* Right Column - Media Embeds */}
       <div className="space-y-6">
+        {/* Render prompt textarea if prompts exist but no custom layout */}
+        {project.prompts && !project.hasCustomLayout && project.prompts.map((promptStage, idx) => (
+          <div
+            key={`prompt-${idx}`}
+            className="bg-gray-900 rounded-lg p-4 border border-gray-700"
+          >
+            <div className="text-xs font-semibold mb-2 text-emerald-400">
+              {promptStage.stage}
+            </div>
+            <textarea
+              readOnly
+              value={promptStage.prompt}
+              className="w-full bg-transparent text-gray-300 text-sm resize-none border-none focus:outline-none font-mono"
+              rows={12}
+              style={{ minHeight: '200px' }}
+            />
+          </div>
+        ))}
+
         {groupedMedia.map((media, idx) => {
           if ('posts' in media && media.type === 'linkedin-group') {
             // Render grouped LinkedIn posts

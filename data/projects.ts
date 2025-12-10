@@ -63,6 +63,45 @@ export const projects: Project[] = [
     ],
   },
   {
+    id: 'ai-audio-generation-working',
+    title: 'AI Audio Generation: What\'s Working',
+    category: 'ai-generation',
+    description: '',
+    tools: ['ElevenLabs'],
+    skills: ['Music Production', 'Prompting', 'Audio Engineer'],
+    accordionSections: [
+      {
+        id: 'prompt-tips',
+        title: 'Prompt Tips',
+        content: 'Genre Specification\nBeing more descriptive about genre helps the AI generate more accurate arrangements. Instead of just "rock" or "pop", specify subgenres and influences.\n\nStructural Approach\nBreaking instructions down by section (verse, chorus, bridge) yields better results than general directives. Each section can have its own musical characteristics and arrangement details.\n\nKey Selection\nExplicitly stating the key signature gives the AI a clearer framework for harmonic choices and helps maintain consistency throughout the track.\n\nInstrumental Direction\nProviding playing style instructions for each instrument by section results in more cohesive arrangements. The AI responds well to specific performance techniques (e.g., "fingerpicked acoustic guitar" vs "strummed guitar").\n\nLyrical Guidance\nRather than requesting fully-formed lyrics, giving the AI a brief topic or thematic direction produces lyrics that better match the intended vibe. The AI demonstrates strong capability in generating contextually appropriate lyrical content.'
+      },
+      {
+        id: 'results',
+        title: 'Results',
+        content: 'This track shows marked improvement over previous examples, demonstrating how specific, sectioned instructions lead to superior output quality.'
+      },
+      {
+        id: 'critique',
+        title: 'Critique',
+        content: 'Timing & Feel\nThe swing feel lacks the natural human imperfection that makes neo-soul groove. The drums hit too precisely on the grid, making the "lazy swing" feel programmed rather than played. Real neo-soul drummers push and pull against the beat—this needs more rhythmic variation and intentional rushing/dragging.\n\nArrangement Density\nThe mix feels cluttered in the choruses. When all instruments come in together (keys, bass, drums, sax, guitar, vocals), there\'s insufficient frequency separation and dynamic contrast. Professional neo-soul arrangements use space strategically—not every element needs to be playing at full intensity simultaneously.\n\nIdeas for Improvement\n• Request specific tempo variations (e.g., "slight ritardando into the bridge")\n• Add dynamic instructions per section (e.g., "chorus: drums hit harder, sax takes lead, guitar pulls back")\n• Specify rest patterns and space between phrases\n• Request mixing-style instructions (e.g., "keep guitar subtle and panned, let the bass and sax share the low-mid frequency space")'
+      }
+    ],
+    prompts: [
+      {
+        stage: 'Prompt',
+        prompt: 'a neo soul track that contains\nIntro, verse, chorus, bridge, verse, chorus, outro\n102 bpm\nfunky neo soul with a british female vocal singing about a past lover who left her life\nkeys should be smooth, ethereal, moody\nbassline should be funky moog that drives a lot of the rhythm\ndrums should be lazy with lots of swing\nsaxophone emotional\nguitar licks to accompany the vocals\n\nintro keep it vocals and keys only\nverse should include all instruments excluding the saxophone\nchorus should include all instruments big sax sounds\nbridge should be uplifting\nverse should go back down to being chill, rhythm, stripped back\nchorus uplifting groovy rhythmic\noutro chill sax solo to end'
+      }
+    ],
+    media: [
+      {
+        type: 'audio',
+        url: '/audio/AI-Audio-Track-3.mp3',
+        title: 'Generated Track',
+        aspectRatio: '24/4'
+      },
+    ],
+  },
+  {
     id: 'ai-audio-generation-system',
     title: 'AI Audio Workflow Prototype',
     category: 'ai-generation',

@@ -34,6 +34,12 @@ export interface PromptStage {
   prompt: string;
 }
 
+export interface AccordionSection {
+  id: string;
+  title: string;
+  content: string;
+}
+
 export interface Project {
   id: string;
   title: string;
@@ -54,4 +60,5 @@ export interface Project {
   isHero?: boolean;
   hasCustomLayout?: boolean;
   prompts?: PromptStage[];
+  accordionSections?: AccordionSection[];
 }
